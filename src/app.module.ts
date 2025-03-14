@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './enitities/users/users.enitity';
 import { ServiceRequest } from './enitities/services/service-request-enitiy';
 import { AuthModule } from './auth/auth.module';
+import { MatchingController } from './matching/matching.controller';
+import { MatchingModule } from './matching/matching.module';
 
 @Module({
   imports: [
@@ -18,10 +20,10 @@ import { AuthModule } from './auth/auth.module';
       entities: [User, ServiceRequest],
       synchronize: true,
     }),
-
+    MatchingModule,
     AuthModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, MatchingController],
   providers: [AppService],
 })
 export class AppModule {}

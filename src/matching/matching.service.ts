@@ -4,11 +4,7 @@ import Redis from 'ioredis';
 
 @Injectable()
 export class MatchingService {
-  private redisClient = new Redis({ host: 'localhost' });
-
-  constructor() {
-    this.redisClient.connect();
-  }
+  private redisClient = new Redis({ host: 'localhost', port: 6379 });
 
   async addProfessionalToPool(
     professionalId: string,
