@@ -1,7 +1,15 @@
 /* eslint-disable prettier/prettier */
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
+
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  OneToMany,
+} from 'typeorm';
 
 import * as bcrypt from 'bcrypt';
+import { Booking } from '../booking/booking.entitiy';
 
 @Entity()
 export class User {
@@ -25,6 +33,12 @@ export class User {
 
   @Column({ nullable: true })
   location: string;
+
+  @OneToMany(() => Booking, (booking) => booking.client)
+  clientBookings: Booking[];
+
+  @OneToMany(() => Booking, (booking) => booking.professional)
+  professionalBookings: Booking[];
 
   @BeforeInsert()
   async hashedPassword() {
