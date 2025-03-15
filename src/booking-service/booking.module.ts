@@ -7,7 +7,7 @@ import { BookingService } from './booking.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Booking, User])],
-  controllers: [],
+  controllers: [Booking],
   providers: [BookingService],
   exports: [BookingService],
 })
