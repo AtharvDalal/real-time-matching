@@ -32,4 +32,11 @@ export class MatchingService {
     }
     return null;
   }
+
+  async findProfessionalByLocation(serviceType: string, location: string) {
+    const key = `professionals:${serviceType}`;
+    const professionals = await this.redisClient.hgetall(key);
+
+    return null;
+  }
 }
