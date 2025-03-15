@@ -37,6 +37,14 @@ export class MatchingService {
     const key = `professionals:${serviceType}`;
     const professionals = await this.redisClient.hgetall(key);
 
-    return professionals;
+    for (const [id, data] of Object.entries(professionals)) {
+      const professional = JSON.parse(data);
+      if (professional.location === location) {
+        await this.redisClient.hdel(key, id);
+        return professional;
+      }
+    }
+
+    return null;
   }
 }
