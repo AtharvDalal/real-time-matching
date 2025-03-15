@@ -37,6 +37,6 @@ export class MatchingService {
     const key = `professionals:${serviceType}`;
     const professionals = await this.redisClient.hgetall(key);
 
-    return null;
+    return professionals;
   }
 }
